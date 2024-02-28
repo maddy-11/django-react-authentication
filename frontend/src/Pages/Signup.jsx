@@ -25,7 +25,7 @@ const Signup = ({ signup }) => {
         return <Navigate to={"../"}></Navigate>
     }
     return (
-        <div className="main-box">
+        <div className="main-box bg-light card shadow">
             <h2 className="text-center mb-4">Signup</h2>
             <form className="mb-3" onSubmit={e => handlingSubmit(e)}>
                 <div className="mb-3">
@@ -45,7 +45,7 @@ const Signup = ({ signup }) => {
                     <input name="password1" value={password1} onChange={e => handlingInput(e)} type="password" className="form-control" id="password1" placeholder="Password ..."/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="password2" className="form-label">Password</label>
+                    <label htmlFor="password2" className="form-label">Confirm Password</label>
                     <input name="password2" value={password2} onChange={e => handlingInput(e)} type="password" className="form-control" id="password2" placeholder="Password ..."/>
                 </div>
                 <div className="d-grid gap-2">

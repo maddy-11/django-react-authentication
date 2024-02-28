@@ -5,7 +5,7 @@ from .managers import CustomUserManager
 
 # Create your models here.
 class CustomUserModel(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_("Email Address"), unique=True, max_length=255)
+    email = models.EmailField(verbose_name="Email", null=True, unique=True, max_length=100)
     first_name = models.CharField(_("First Name"), max_length=100)
     last_name = models.CharField(_("Last Name"), max_length=100, null=True, blank=True)
     is_active = models.BooleanField(default=True)

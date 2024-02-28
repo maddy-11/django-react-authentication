@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, Navigate } from "react-router-dom";
+import { Button } from 'react-bootstrap';
 import { useState } from "react";
 import { connect } from "react-redux";
 import { login } from "../reducer/Actions";
@@ -15,16 +16,16 @@ const Login = ({ login, isAuthenticated }) => {
         e.preventDefault();
         login( email, password );
     }
-    const reachGoogle = () => {
-        const clientID = "Client Id Oauth google";
-        const callBackURI = "http://localhost:3000/";
+    const continueWithGoogle = () => {
+        const clientID = "132960106269-1dm1vkhif7qlh8je7t2s1pa3f7i9kquo.apps.googleusercontent.com";
+        const callBackURI = "http://localhost:8000/";
         window.location.replace(`https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=${callBackURI}&prompt=consent&response_type=code&client_id=${clientID}&scope=openid%20email%20profile&access_type=offline`)
     }
     if (isAuthenticated) {
         return <Navigate to={"../"}></Navigate>
     }
     return (
-        <div className="main-box">
+        <div className="main-box bg-light card shadow">
             <h2 className="text-center mb-4">Login</h2>
             <form className="mb-3" onSubmit={e => handlingSubmit(e)}>
                 <div className="mb-3">
@@ -33,14 +34,14 @@ const Login = ({ login, isAuthenticated }) => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input name="password" value={password} onChange={e => handlingInput(e)} type="password" className="form-control" id="password" placeholder="password ..."/>
+                    <input name="password" value={password} onChange={e => handlingInput(e)} type="password" className="form-control" id="password" placeholder="password"/>
                 </div>
                 <div className="d-grid gap-2">
-                    <button className="btn btn-primary" type="submit">Login</button>
+                    <button className="btn btn-outline-primary" type="submit">Login</button>
                 </div>
-                <div className="d-grid gap-2 mt-2">
-                    <button className="btn btn-primary" type="button" onClick={ reachGoogle }>Login With Google</button>
-                </div>
+                <Button variant="outline-danger col-lg-12 my-1" onClick={continueWithGoogle}>
+                    <i className="fab fa-google"></i> Google
+                </Button>
             </form>
             <p>Forgot your password? <Link to={"../reset/password/"}>Reset Password</Link></p>
             <p>Don't have any account? <Link to={"../signup/"}>Signup</Link></p>

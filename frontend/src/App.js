@@ -24,7 +24,7 @@ const App = () => {
             <Route path="change/password/" Component={ChangePassword}></Route>
             <Route path="reset/password/" Component={ResetPassword}></Route>
             <Route path="dj-rest-auth/registration/account-confirm-email/:key/" Component={EmailVerification}></Route>
-            <Route path="reset/password/confirm/:uid/:token" Component={ResetPasswordConfirm}></Route>
+            <Route path="reset-password/confirm/:uid/:token" Component={ResetPasswordConfirm}></Route>
           </Routes>
         </Layout>
       </Router>
