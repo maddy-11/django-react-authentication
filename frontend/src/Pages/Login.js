@@ -37,7 +37,7 @@ const Login = ({ login, isAuthenticated }) => {
                     <input name="password" value={password} onChange={e => handlingInput(e)} type="password" className="form-control" id="password" placeholder="password"/>
                 </div>
                 <div className="d-grid gap-2">
-                    <button className="btn btn-outline-primary" type="submit">Login</button>
+                    <button className="btn btn-primary" type="submit">Login</button>
                 </div>
                 <Button variant="outline-danger col-lg-12 my-1" onClick={continueWithGoogle}>
                     <i className="fab fa-google"></i> Google

@@ -2,51 +2,49 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../reducer/Actions";
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
 
-const Navbar = ({ logout, isAuthenticated }) => {
+const CustomNavbar = ({ logout, isAuthenticated }) => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-3">
-            <div className="container-fluid">
-                <Link className="navbar-brand" to="/">Mywebsite.co.id</Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                    <Link className="nav-link active" aria-current="page" to="/">Home</Link>
-                    </li>
-                    { isAuthenticated? (
+        <Navbar bg="primary" expand="lg" variant="dark" className="p-3">
+            <Navbar.Brand as={Link} to="/">Mywebsite.co.id</Navbar.Brand>
+            <Navbar.Toggle aria-controls="navbar-nav" />
+            <Navbar.Collapse id="navbar-nav">
+                <Nav className="ms-auto">
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/" >Home</Nav.Link>
+                    </Nav.Item>
+                    { isAuthenticated ? (
                         <>
-                        <li className="nav-item">
-                        <Link className="nav-link active" aria-current="page" to="change/password/">Change Password</Link>
-                        </li>
-                        <li className="nav-item">
-                        <span className="nav-link active" aria-current="page" onClick={ logout } id="logout">Logout</span>
-                        </li>
+                            <Nav.Item>
+                                <Nav.Link as={Link} to="/change/password">Change Password</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Button variant="outline-light" onClick={logout}>Logout</Button>
+                            </Nav.Item>
                         </>
-                    ): (
+                    ) : (
                         <>
-                        <li className="nav-item">
-                        <Link className="nav-link active" aria-current="page" to="login/">Login</Link>
-                        </li>
-                        <li className="nav-item">
-                        <Link className="nav-link active" aria-current="page" to="signup/">Signup</Link>
-                        </li>
+                            <Nav.Item>
+                                <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                            </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link as={Link} to="/signup">Signup</Nav.Link>
+                            </Nav.Item>
                         </>
-                    ) }
-                    
-                </ul>
-                </div>
-            </div>
-        </nav>
+                    )}
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
     )
 }
 
-const mapStateToProps = ( state ) => {
+const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.AuthReducer.isAuthenticated
     }
 }
 
-export default connect(mapStateToProps, { logout })(Navbar)
+export default connect(mapStateToProps, { logout })(CustomNavbar);
